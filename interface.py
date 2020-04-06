@@ -18,7 +18,7 @@ def input_inicio():
     return controle
 
 
-def NovoRemedio():
+def add_remedio():
     print("Cadastro de novo remédio")
     nome_remedio = input("Nome do remédio: ")
     quantidade = input("dose: ")
@@ -30,7 +30,7 @@ def NovoRemedio():
     return novo_remedio
 
 
-def MostraRemedio():
+def mostra_remedio():
     print("escolha uma opção:")
     todos_remedios = carrega()
     print(ListaRemedios(todos_remedios))
@@ -42,14 +42,14 @@ def MostraRemedio():
 def tomou():
 
     print("informar que tomou remédio. ")
-    remedio = MostraRemedio()
+    remedio = mostra_remedio()
     remedio.toma()
     salva(remedio)
     input("Informação registrada. Enter para continuar...")
 
 
 def verifica_se_tomou():
-    remedio = MostraRemedio()
+    remedio = mostra_remedio()
     if remedio.verifica_se_tomou_hoje:
         print(f"Você já tomou o remédio hoje: {remedio.ultima_vez_que_tomou}")
     else:
@@ -61,7 +61,7 @@ def rotina_inicial():
     while rodando:
         controle = input_inicio()
         if controle == "1":
-            NovoRemedio()
+            add_remedio()
         elif controle == "2":
             print("###################################################")
             print("############ Menu 1: O que deseja fazer? ##########")
@@ -73,7 +73,7 @@ def rotina_inicial():
                 verifica_se_tomou()
             if control2 == "2":
 
-                print(MostraRemedio())
+                print(mostra_remedio())
                 input("aperte enter para continuar...")
         elif controle == "3":
             tomou()

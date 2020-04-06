@@ -2,11 +2,11 @@ from datetime import datetime
 
 
 class Remedio:
-    def __init__(self, nome, quantidade, periodo, tomou=[]):
+    def __init__(self, nome, quantidade, periodo, tomou = list()):
         self._nome = nome
         self._quantidade = quantidade
         self._periodo = periodo
-        self._tomou = tomou or []
+        self._tomou = tomou or list()
 
     def __str__(self):
         return f"{self._nome}: tomar {self._quantidade} comprimidos, a cada {self._periodo}h"
@@ -54,6 +54,6 @@ class ListaRemedios:
         str_remedio = ""
         i = 1
         for remedio in self._remedios:
-            str_remedio = str_remedio + "\n" f"{i} - {remedio.nome}"
+            str_remedio = f"{str_remedio} \n {i} - {remedio.nome} "
             i += 1
         return str_remedio
