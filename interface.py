@@ -1,18 +1,22 @@
 from modelo import Remedio, ListaRemedios
 from armazenamento import abre, salva
 
+
 def carrega():
     return abre()
+
+
 def input_inicio():
     print("###################################################")
     print("############ Menu 1: O que deseja fazer? ##########")
     print("###################################################")
     print("1 - Cadastrar um novo remédio")
-    print("2 - Consultar informações de remédio cadastrado") 
+    print("2 - Consultar informações de remédio cadastrado")
     print("3 - Confirmar que tomou")
     print("4 - encerrar")
     controle = input()
     return controle
+
 
 def NovoRemedio():
     print("Cadastro de novo remédio")
@@ -25,13 +29,14 @@ def NovoRemedio():
     input("aperte enter para continuar")
     return novo_remedio
 
+
 def MostraRemedio():
     print("escolha uma opção:")
     todos_remedios = carrega()
     print(ListaRemedios(todos_remedios))
     controle = int(input())
 
-    return todos_remedios[controle-1]
+    return todos_remedios[controle - 1]
 
 
 def tomou():
@@ -42,20 +47,21 @@ def tomou():
     salva(remedio)
     input("Informação registrada. Enter para continuar...")
 
+
 def verifica_se_tomou():
     remedio = MostraRemedio()
     if remedio.verifica_se_tomou_hoje:
         print(f"Você já tomou o remédio hoje: {remedio.ultima_vez_que_tomou}")
     else:
         print(f"Você ainda não tomou o remédio hoje:  {remedio.ultima_vez_que_tomou}")
-    
+
 
 def rotina_inicial():
     rodando = True
     while rodando:
         controle = input_inicio()
         if controle == "1":
-            NovoRemedio()   
+            NovoRemedio()
         elif controle == "2":
             print("###################################################")
             print("############ Menu 1: O que deseja fazer? ##########")
@@ -63,18 +69,17 @@ def rotina_inicial():
             print("1 - Verificar se tomou")
             print("2 - Apenas visualizar informações")
             control2 = input()
-            if control2 == '1':
+            if control2 == "1":
                 verifica_se_tomou()
-            if control2 == '2':
-                
+            if control2 == "2":
+
                 print(MostraRemedio())
-                input("aperte enter para continuar...")                
+                input("aperte enter para continuar...")
         elif controle == "3":
             tomou()
         elif controle == "4":
             rodando = False
 
 
-if(__name__ == "__main__"):
+if __name__ == "__main__":
     rotina_inicial()
-
