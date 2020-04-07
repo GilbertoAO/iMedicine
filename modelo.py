@@ -2,11 +2,11 @@ from datetime import datetime
 
 
 class Remedio:
-    def __init__(self, nome, quantidade, periodo, tomou = list()):
+    def __init__(self, nome, quantidade, periodo, tomou = None):
         self._nome = nome
         self._quantidade = quantidade
         self._periodo = periodo
-        self._tomou = tomou or list()
+        self._tomou = tomou or None
 
     def __str__(self):
         return f"{self._nome}: tomar {self._quantidade} comprimidos, a cada {self._periodo}h"

@@ -14,3 +14,8 @@ def abre():
     remedios = [arquivo[remedio] for remedio in lista_remedios]
     arquivo.close
     return remedios
+
+def exclui(remedio):
+    arquivo = shelve.open("remedios")
+    del arquivo[remedio]
+    arquivo.close

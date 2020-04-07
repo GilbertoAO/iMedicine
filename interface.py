@@ -1,5 +1,5 @@
 from modelo import Remedio, ListaRemedios
-from armazenamento import abre, salva
+from armazenamento import abre, salva, exclui
 
 
 def carrega():
@@ -13,8 +13,9 @@ def input_inicio():
     print("1 - Cadastrar um novo remédio")
     print("2 - Consultar informações de remédio cadastrado")
     print("3 - Confirmar que tomou")
-    print("4 - encerrar")
-    controle = input()
+    print("4 - Excluir o cadastro de um remédio")   
+    print("5 - encerrar")    
+    controle = input()    
     return controle
 
 
@@ -26,7 +27,7 @@ def add_remedio():
     novo_remedio = Remedio(nome_remedio, quantidade, periodo)
     print(novo_remedio)
     salva(novo_remedio)
-    input("aperte enter para continuar")
+    input("Aperte enter para continuar")
     return novo_remedio
 
 
@@ -35,11 +36,11 @@ def mostra_remedio():
     todos_remedios = carrega()
     print(ListaRemedios(todos_remedios))
     controle = int(input())
-
     return todos_remedios[controle - 1]
 
 
 def tomou():
+
 
     print("informar que tomou remédio. ")
     remedio = mostra_remedio()
@@ -54,6 +55,13 @@ def verifica_se_tomou():
         print(f"Você já tomou o remédio hoje: {remedio.ultima_vez_que_tomou}")
     else:
         print(f"Você ainda não tomou o remédio hoje:  {remedio.ultima_vez_que_tomou}")
+
+def exclui_remedio():
+    print("Excluindo remédio...")
+    remedio = mostra_remedio()
+    key_remedio = remedio.nome
+    exclui(key_remedio)
+    input("Remédio excluido com sucesso. Enter para continuar")
 
 
 def rotina_inicial():
@@ -78,6 +86,8 @@ def rotina_inicial():
         elif controle == "3":
             tomou()
         elif controle == "4":
+            exclui_remedio()
+        elif controle == "5":
             rodando = False
 
 
